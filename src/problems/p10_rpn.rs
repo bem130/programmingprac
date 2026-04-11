@@ -18,7 +18,7 @@
 #[derive(Debug,PartialEq)]
 enum Token {
     Num(i64),
-    Operand(Op),
+    Operator(Op),
 }
 
 #[derive(Debug,PartialEq)]
@@ -34,13 +34,13 @@ pub fn eval_rpn(expr: &str) -> Option<i64> {
     let tokens = expr.split_whitespace().map(|token| {
         match token.parse::<i64>() {
             Ok(n) => Token::Num(n),
-            Err(_e) => match token {
-                "+" => Token::Operand(Op::Add),
-                "-" => Token::Operand(Op::Sub),
-                "*" => Token::Operand(Op::Mul),
-                "/" => Token::Operand(Op::Div),
+            Err(_e) => Token::Operator(match token {
+                "+" => Op::Add,
+                "-" => Op::Sub,
+                "*" => Op::Mul,
+                "/" => Op::Div,
                 _ => panic!("unknown token"),
-            }
+            })
         }
     }).collect::<Vec<Token>>();
     // eval
@@ -50,7 +50,7 @@ pub fn eval_rpn(expr: &str) -> Option<i64> {
             Token::Num(n) => {
                 eval_stack.push(n);
             }
-            Token::Operand(op) => {
+            Token::Operator(op) => {
                 match (eval_stack.pop(),eval_stack.pop()) {
                     (Some(b),Some(a)) => {
                         eval_stack.push(match op {
@@ -65,6 +65,6 @@ pub fn eval_rpn(expr: &str) -> Option<i64> {
             }
         }
     }
-    if eval_stack.len()!=1 {None }
+    if eval_stack.len()!=1 { None }
     else { eval_stack.pop() }
 }
