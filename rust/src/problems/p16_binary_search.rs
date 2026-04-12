@@ -15,6 +15,39 @@
 //   - mid = (left + right) / 2 で中央を求める
 //   - target と比較して範囲を半分に絞る
 
+// pub fn binary_search(arr: &[i32], target: i32) -> Option<usize> {
+//     // init: 全範囲
+//     let mut left = 0;
+//     let mut right = arr.len();
+//     // loop
+//     while left<right {
+//         let mid = (left+right)/2;
+//         if arr[mid]==target {
+//             return Some(mid);
+//         }
+//         else if arr[mid]<target {
+//             left = mid+1;
+//         }
+//         else {
+//             right = mid;
+//         }
+//     }
+//     None
+// }
+
 pub fn binary_search(arr: &[i32], target: i32) -> Option<usize> {
-    todo!() // ここを実装してください
+    // init
+    let mut left = 0;
+    let mut right = arr.len();
+    // loop
+    while left<right {
+        let mid = left+(right-left)/2;
+        use std::cmp::Ordering;
+        match arr[mid].cmp(&target) {
+            Ordering::Equal => return Some(mid),
+            Ordering::Less => left = mid+1,
+            Ordering::Greater => right = mid,
+        }
+    }
+    None
 }

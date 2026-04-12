@@ -20,5 +20,22 @@
 //   - p*p > n になったら探索終了でOK
 
 pub fn primes(n: usize) -> Vec<usize> {
-    todo!() // ここを実装してください
+    // 最小の素数は2
+    if n<2 { return vec![]; }
+    // 素数候補のboolean配列
+    let mut is_prime = vec![true; n + 1];
+    // 0,1は必ず除外
+    is_prime[0] = false;
+    is_prime[1] = false;
+    // loop
+    // 2から始めて、最小の候補の倍数を除外
+    for p in (2..).take_while(|p| p*p<=n) {
+        if is_prime[p] {
+            for m in (p*p..=n).step_by(p) {
+                is_prime[m] = false;
+            }
+        }
+    }
+    // 結果の配列を作成
+    is_prime.iter().enumerate().filter(|(_,v)| **v).map(|(i, _)| i).collect()
 }

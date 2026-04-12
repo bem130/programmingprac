@@ -18,5 +18,16 @@
 //   - swap で交換: vec.swap(i, i+1)
 
 pub fn bubble_sort(arr: &[i32]) -> Vec<i32> {
-    todo!() // ここを実装してください
+    let mut vec = arr.to_vec();
+    for i in 1..vec.len() {
+        let mut swapped = false;
+        for j in 0..vec.len()-i {
+            if vec[j]>vec[j+1] {
+                vec.swap(j, j+1);
+                swapped = true;
+            }
+        }
+        if !swapped { break; }
+    }
+    vec
 }
