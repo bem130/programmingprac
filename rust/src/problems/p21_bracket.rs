@@ -18,6 +18,34 @@
 //   - 閉じ括弧 → pop して対応する開き括弧か確認
 //   - 最後にスタックが空なら OK
 
+#[derive(PartialEq)]
+enum Brackets {
+    Paren,
+    Bracket,
+    Brace,
+}
+
 pub fn is_valid(s: &str) -> bool {
-    todo!() // ここを実装してください
+    let mut stack: Vec<Brackets> = Vec::new();
+    for a in s.chars() {
+        match a {
+            '(' => stack.push(Brackets::Paren),
+            '[' => stack.push(Brackets::Bracket),
+            '{' => stack.push(Brackets::Brace),
+            ')' => { match stack.pop() {
+                Some(val) if val == Brackets::Paren => { },
+                _ => return false,
+            } },
+            ']' => { match stack.pop() {
+                Some(val) if val == Brackets::Bracket => { },
+                _ => return false,
+            } },
+            '}' => { match stack.pop() {
+                Some(val) if val == Brackets::Brace => { },
+                _ => return false,
+            } },
+            _ => { }
+        }
+    }
+    stack.is_empty()
 }

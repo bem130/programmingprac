@@ -20,5 +20,16 @@
 //   - B の列数: b[0].len()
 
 pub fn mat_mul(a: &Vec<Vec<i64>>, b: &Vec<Vec<i64>>) -> Vec<Vec<i64>> {
-    todo!() // ここを実装してください
+    let rows = a.len();
+    let cols = b[0].len();
+    let common = a[0].len();
+    let mut res = vec![vec![0; cols]; rows];
+    for i in 0..rows {
+        for j in 0..cols {
+            for k in 0..common {
+                res[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    res
 }

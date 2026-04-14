@@ -15,5 +15,9 @@
 //   - または HashMap で各文字の出現回数を数えて比較する
 
 pub fn is_anagram(a: &str, b: &str) -> bool {
-    todo!() // ここを実装してください
+    let mut a: Vec<char> = a.chars().filter(|c| !c.is_whitespace()).flat_map(|c| c.to_lowercase()).collect();
+    let mut b: Vec<char> = b.chars().filter(|c| !c.is_whitespace()).flat_map(|c| c.to_lowercase()).collect();
+    a.sort();
+    b.sort();
+    a==b
 }

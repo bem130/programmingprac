@@ -20,5 +20,20 @@
 //   - .chars().nth(i) で i 番目の文字を取得
 
 pub fn lcs(s1: &str, s2: &str) -> usize {
-    todo!() // ここを実装してください
+    let a: Vec<char> = s1.chars().collect();
+    let b: Vec<char> = s2.chars().collect();
+    let n = a.len();
+    let m = b.len();
+    let mut dp = vec![vec![0usize; m+1]; n+1];
+    for i in 1..=n {
+        for j in 1..=m {
+            if a[i-1]==b[j-1] {
+                dp[i][j] = dp[i-1][j-1]+1;
+            }
+            else {
+                dp[i][j] = dp[i-1][j].max(dp[i][j-1]);
+            }
+        }
+    }
+    dp[n][m]
 }

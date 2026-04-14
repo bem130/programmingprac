@@ -15,9 +15,31 @@
 //   decode: 各ペアについて文字を回数分繰り返す (.repeat() が使える)
 
 pub fn encode(s: &str) -> Vec<(char, usize)> {
-    todo!() // ここを実装してください
+    let mut s = s.chars();
+    let mut res: Vec<(char, usize)> = Vec::new();
+    let mut bef = match s.next() {
+        Some(v) => v,
+        None => return res,
+    };
+    let mut count = 1;
+    for c in s {
+        if c==bef {
+            count+=1;
+        }
+        else {
+            res.push((bef,count));
+            bef = c;
+            count = 1;
+        }
+    }
+    res.push((bef,count));
+    res
 }
 
 pub fn decode(pairs: &[(char, usize)]) -> String {
-    todo!() // ここを実装してください
+    let mut s = String::new();
+    for &(c,l) in pairs {
+        for _ in 0..l { s.push(c); }
+    }
+    s
 }

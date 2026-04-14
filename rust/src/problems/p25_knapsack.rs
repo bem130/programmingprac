@@ -22,5 +22,15 @@
 //   - 1次元配列で最適化も可能 (逆順にループ)
 
 pub fn knapsack(capacity: usize, items: &[(usize, usize)]) -> usize {
-    todo!() // ここを実装してください
+    let n = items.len();
+    let mut dp = vec![vec![0usize; capacity+1]; n+1];
+    for i in 1..=n {
+        let (wi, vi) = items[i-1];
+        for w in 0..=capacity {
+            dp[i][w] = if wi <= w
+                { dp[i-1][w].max(dp[i-1][w-wi]+vi) }
+                else { dp[i-1][w] }
+        }
+    }
+    dp[n][capacity]
 }
