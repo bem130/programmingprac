@@ -5,6 +5,6 @@ public static class P04Reverse
 {
     public static string Reverse(string s)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        return new string(s.Reverse().ToArray());
     }
 }

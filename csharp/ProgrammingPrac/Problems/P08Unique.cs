@@ -5,6 +5,13 @@ public static class P08Unique
 {
     public static int[] Unique(int[] numbers)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        var set = new HashSet<int>();
+        var list = new List<int>();
+        foreach (int num in numbers) {
+            if (set.Add(num)) {
+                list.Add(num);
+            }
+        }
+        return list.ToArray();
     }
 }

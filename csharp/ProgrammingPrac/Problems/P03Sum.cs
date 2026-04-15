@@ -5,6 +5,6 @@ public static class P03Sum
 {
     public static int Sum(int[] numbers)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        return numbers.Sum();
     }
 }

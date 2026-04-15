@@ -5,6 +5,6 @@ public static class P18Gcd
 {
     public static long Gcd(long a, long b)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        return b==0?a:Gcd(b,a%b);
     }
 }

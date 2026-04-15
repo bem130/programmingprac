@@ -6,6 +6,19 @@ public static class P07CountChars
 {
     public static Dictionary<char, int> CountChars(string s)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        var map = new Dictionary<char,int>();
+        foreach(char c in s) {
+            if (c==' ') {
+                continue;
+            }
+            char key = char.ToLowerInvariant(c);
+            if (map.TryGetValue(key,out int count)) {
+                map[key] = count+1;
+            }
+            else {
+                map[key] = 1;
+            }
+        }
+        return map;
     }
 }

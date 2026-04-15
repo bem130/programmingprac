@@ -6,6 +6,7 @@ public static class P05Palindrome
 {
     public static bool IsPalindrome(string s)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        var lower = s.ToLowerInvariant();
+        return lower == new string(lower.Reverse().ToArray());
     }
 }

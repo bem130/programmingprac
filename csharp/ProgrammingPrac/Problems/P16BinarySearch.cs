@@ -6,6 +6,20 @@ public static class P16BinarySearch
 {
     public static int BinarySearch(int[] arr, int target)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        int left = 0;
+        int right = arr.Length;
+        while (left<right) {
+            int mid = left + (right - left) /2;
+            if (arr[mid]==target) {
+                return mid;
+            }
+            if (arr[mid]<target) {
+                left = mid+1;
+            }
+            else {
+                right = mid;
+            }
+        }
+        return -1;
     }
 }

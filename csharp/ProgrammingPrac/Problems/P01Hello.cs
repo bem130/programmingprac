@@ -6,6 +6,6 @@ public static class P01Hello
 {
     public static string Greet(string name)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        return $"Hello, {name}!";
     }
 }

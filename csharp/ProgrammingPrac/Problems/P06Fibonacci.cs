@@ -5,6 +5,13 @@ public static class P06Fibonacci
 {
     public static long Fibonacci(int n)
     {
-        throw new NotImplementedException(); // ここを実装してください
+        long a = 0;
+        long b = 1;
+        for (int i=0;i<n;i++) {
+            long tmp = a;
+            a = b;
+            b = a+tmp;
+        }
+        return a;
     }
 }
